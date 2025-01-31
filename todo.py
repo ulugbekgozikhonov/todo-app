@@ -1,12 +1,10 @@
-from fastapi import APIRouter,HTTPException,Request,Depends
-from fastapi.security import OAuth2PasswordBearer
+from fastapi import APIRouter,HTTPException,Depends
 from models import Task
 from schemas import TaskRequest
-from general import dependency
+from general import dependency,oauth2_scheme
 from auth import decode_access_token
 from typing import Annotated
 
-oauth2_scheme = OAuth2PasswordBearer(tokenUrl="")
 
 router = APIRouter(tags=["todo"],prefix="/todo")
 

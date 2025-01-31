@@ -7,15 +7,13 @@ from passlib.context import CryptContext
 from jose import jwt,JWTError
 from datetime import datetime, timedelta
 from pytz import timezone
+from config import SECRET_KEY,ALGORITHM
 # pip install python-jose[cryptography] bu jwt token generate qilish uchun
 
 # pip install passlib[bcrypt] passwordni hashlash uchun 
 
 router = APIRouter(tags=["auth"],prefix="/auth")
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
-
-SECRET_KEY = "asjdnaonaklsmkanoi234lkrnlkan2l34n3j"
-ALGORITHM = "HS256"
 
 def create_access_token(data: dict):
     to_encode = data.copy()

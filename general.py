@@ -1,3 +1,4 @@
+from fastapi.security import OAuth2PasswordBearer
 from database import SessionLocal
 from fastapi import Depends
 from sqlalchemy.orm import Session
@@ -11,3 +12,6 @@ def get_db():
         db.close()
         
 dependency = Annotated[Session, Depends(get_db)]
+
+
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="")
