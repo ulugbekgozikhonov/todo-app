@@ -19,4 +19,5 @@ class User(Base):
     age = Column(Integer)
     email = Column(String(length=93),unique=True)
     username = Column(String(length=93),nullable=False,unique=True)
+    role = Column(String(length=33),nullable=False,default="user")
     password = Column(String(length=255))
