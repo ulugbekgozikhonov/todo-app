@@ -17,3 +17,6 @@ async def ketmon():
 app.include_router(auth.router)
 app.include_router(todo.router)
 app.include_router(practicehtml.router)
+
+
+print("SAlom Dunoyo")
