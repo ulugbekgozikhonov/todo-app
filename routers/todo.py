@@ -19,9 +19,9 @@ async def todo_list(db: db_dependency, token: token_dependency):
 	return tasks
 
 
-@router.get(path="/{id}",status_code=200)
-async def todo_by_id(id: int, db: db_dependency, token: token_dependency):
-	task = db.query(Task).filter(Task.id == id).first()
+@router.get(path="/{task_id}",status_code=200)
+async def todo_by_id(task_id: int, db: db_dependency, token: token_dependency):
+	task = db.query(Task).filter(Task.id == task_id).first()
 	if task is None:
 		raise HTTPException(status_code=404, detail="Task not found")
 	return task
@@ -30,7 +30,12 @@ async def todo_by_id(id: int, db: db_dependency, token: token_dependency):
 @router.post(path="/create", status_code=201)
 async def create_task(task_request: TaskRequest, db: db_dependency):
 	try:
-		task = Task(**task_request.model_dump())
+		task = Task(
+			title=task_request.title,
+			description=task_request.description,
+			owner_id=task_request.owner_id,
+			completed=task_request.completed,
+		)
 		db.add(task)
 		db.commit()
 		return task_request

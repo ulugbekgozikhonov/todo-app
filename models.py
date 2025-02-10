@@ -8,7 +8,7 @@ class Task(Base):
     description = Column(String)
     priority = Column(Integer)
     completed = Column(Boolean,default=False)
-    owner_id = Column(Integer,ForeignKey("users.id"))
+    owner_id = Column(Integer,ForeignKey("users.id"),nullable=False)
 
 
 class User(Base):
